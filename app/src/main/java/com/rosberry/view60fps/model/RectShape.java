@@ -22,10 +22,10 @@ public class RectShape extends Shape {
     }
 
     @Override
-    void draw(Canvas canvas, Paint paint) {
-        paint.setColor(color);
-        paint.setStrokeWidth(strokeWidth);
+    void draw(int width, int height, Canvas canvas, Paint defaultPaint) {
+        defaultPaint.setColor(color);
+        defaultPaint.setStrokeWidth(strokeWidth);
 
-        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, defaultPaint);
     }
 }

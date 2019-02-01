@@ -3,7 +3,6 @@ package com.rosberry.view60fps.model;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import com.rosberry.view60fps.IScene;
 
@@ -33,7 +32,9 @@ public class SceneModelComposer {
     };
 
     private IScene sceneModel = null;
-    private int value;
+    private long value;
+    private int mBoundWidth;
+    private int mBoundHeight;
 
     public SceneModelComposer(int widthPixels) {
 
@@ -46,7 +47,7 @@ public class SceneModelComposer {
     public synchronized void drawOn(Canvas canvas) {
 
         synchronized (paint) {
-            initialFrame.drawOn(canvas, paint);
+            initialFrame.drawOn(mBoundWidth, mBoundHeight, canvas, paint);
 
             if (bufferedFrames.size() > 0) {
 
@@ -62,7 +63,7 @@ public class SceneModelComposer {
 
                     frame = bufferedFrames.getLast();
 
-                frame.drawOn(canvas, paint);
+                frame.drawOn(mBoundWidth, mBoundHeight, canvas, paint);
 
                 if (!keepLastFrame) {
                     drawnFrames.addLast(frame);
@@ -72,17 +73,19 @@ public class SceneModelComposer {
         }
     }
 
-    public void changeModel(int value) {
+    public synchronized void changeModel(long value) {
         this.value = value;
-        if (drawnFrames.size() == 0)
+        if (drawnFrames.size() <= 0)
             return;
 
-        sceneModel.change(value);
+        sceneModel.changeValue(value);
         SceneFrame sceneFrame = drawnFrames.removeFirst();
-        sceneModel.add(sceneFrame);
-
+        if (sceneFrame == null) {
+            sceneFrame = new SceneFrame();
+            drawnFrames.add(sceneFrame);
+        }
+        sceneModel.addSceneFrame(sceneFrame);
         bufferedFrames.addFirst(sceneFrame);
-
     }
 
     public void invalidate() {
@@ -91,5 +94,10 @@ public class SceneModelComposer {
 
     public void setSceneModel(IScene sceneModel) {
         this.sceneModel = sceneModel;
+    }
+
+    public void onBoundChanged(int w, int h) {
+        mBoundWidth = w;
+        mBoundHeight = h;
     }
 }

@@ -10,5 +10,5 @@ import android.graphics.Paint;
 public abstract class Shape {
     protected int color;
 
-    abstract void draw(Canvas canvas, Paint paint);
+    abstract void draw(int width, int height, Canvas canvas, Paint defaultPaint);
 }

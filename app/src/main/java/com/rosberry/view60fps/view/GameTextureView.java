@@ -2,13 +2,10 @@ package com.rosberry.view60fps.view;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.TextureView;
 
 import com.rosberry.view60fps.DrawingThread;
 import com.rosberry.view60fps.IComposer;
-import com.rosberry.view60fps.SurfaceViewHolder;
 import com.rosberry.view60fps.TextureViewHolder;
 import com.rosberry.view60fps.model.SceneModelComposer;
 
@@ -62,6 +59,13 @@ public class GameTextureView extends TextureView
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
 
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        sceneComposer.onBoundChanged(w, h);
     }
 
     @Override

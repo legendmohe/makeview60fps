@@ -14,8 +14,8 @@ class FillShape extends Shape {
     }
 
     @Override
-    void draw(Canvas canvas, Paint paint) {
-        paint.setColor(color);
-        canvas.drawPaint(paint);
+    void draw(int width, int height, Canvas canvas, Paint defaultPaint) {
+        defaultPaint.setColor(color);
+        canvas.drawPaint(defaultPaint);
     }
 }

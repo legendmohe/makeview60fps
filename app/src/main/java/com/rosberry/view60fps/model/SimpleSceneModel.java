@@ -1,7 +1,5 @@
 package com.rosberry.view60fps.model;
 
-import android.graphics.Rect;
-
 import com.rosberry.view60fps.IScene;
 
 /**
@@ -10,20 +8,14 @@ import com.rosberry.view60fps.IScene;
 
 public class SimpleSceneModel implements IScene {
 
-    private final int size = 10;
-    private RectShape rectShape = new RectShape(new Rect(0, 0, size , size), 1);
+    private TimerShape mTimerShape = new TimerShape();
 
-    public void change(int value){
-
-        rectShape.rect.left = 0;
-        rectShape.rect.top = 0;
-        rectShape.rect.right = size * value;
-        rectShape.rect.bottom = size * value;
-
+    public void changeValue(long value) {
+        mTimerShape.setValue(String.valueOf(value));
     }
 
-    public void add(SceneFrame sceneFrame) {
+    public void addSceneFrame(SceneFrame sceneFrame) {
         sceneFrame.shapes.clear();
-        sceneFrame.shapes.add(rectShape);
+        sceneFrame.shapes.add(mTimerShape);
     }
 }

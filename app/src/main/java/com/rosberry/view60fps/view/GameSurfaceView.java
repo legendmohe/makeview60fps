@@ -60,6 +60,13 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        sceneComposer.onBoundChanged(w, h);
+    }
+
+    @Override
     public void invalidate() {
         super.invalidate();
 

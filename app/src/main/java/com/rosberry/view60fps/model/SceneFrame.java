@@ -13,9 +13,9 @@ public class SceneFrame {
 
     ArrayList<Shape> shapes = new ArrayList<Shape>();
 
-    void drawOn(Canvas canvas, Paint paint) {
+    void drawOn(int width, int height, Canvas canvas, Paint paint) {
         for (Shape shape : shapes)
-            shape.draw(canvas, paint);
+            shape.draw(width, height, canvas, paint);
     }
 
     void clear() {

@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rosberry.view60fps.MainActivity">
 
-    <com.rosberry.view60fps.view.SquareFrameLayout
+    <FrameLayout
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/radio_group_views"
         android:id="@+id/viewContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-
-    <SeekBar
-        android:id="@+id/seekbarSceneModel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewContainer"
-        android:max="100"
-
-        />
 
     <RadioGroup
         android:id="@+id/radio_group_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekbarSceneModel"
+        android:layout_above="@+id/start_button"
         >
 
         <RadioButton
@@ -55,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/seekbarSceneModel"
+        android:layout_above="@+id/start_button"
         android:orientation="vertical"
         >
 
@@ -75,11 +66,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/seekbarSceneModel"
+            android:layout_below="@+id/viewContainer"
             android:layout_marginTop="10dp"
-            android:checked="true"
             android:text="Sress mode"
             />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_alignParentBottom="true"
+        android:text="START"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/start_button"
+        android:id="@+id/stop_button"
+        android:text="STOP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import com.rosberry.view60fps.model.SceneFrame;
 
 public interface IScene {
 
-    void change(int value);
-    void add(SceneFrame sceneFrame);
+    void changeValue(long value);
+
+    void addSceneFrame(SceneFrame sceneFrame);
 }
